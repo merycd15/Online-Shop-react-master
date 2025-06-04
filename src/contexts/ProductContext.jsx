@@ -7,7 +7,7 @@ const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetch('http://localhost:5000/products');
+      const response = await fetch('https://online-shop-backend-v7d5.onrender.com/products');
       const data = await response.json();
       console.log(data);
       setProducts(data);
