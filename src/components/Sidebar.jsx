@@ -27,7 +27,7 @@ export const Sidebar = () => {
         .join("\n") + `\n\nTotal: $${parseFloat(total).toFixed(2)}`
     );
     
-    window.open(`https://wa.me/+541140273385?text=${message}`, "_blank");
+    window.open(`https://wa.me/+AGERGARANUMERO?text=${message}`, "_blank");
   };
   
   return (
