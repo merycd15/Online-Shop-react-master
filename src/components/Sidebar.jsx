@@ -13,6 +13,23 @@ export const Sidebar = () => {
   const { isOpen, handleClose } = useContext(SidebarContext);
   const { cart, clearCart, total, itemAmount } = useContext(CartContext);
 
+  const handleSendWhatsApp = () => {
+    if (cart.length === 0) return;
+
+    const message = encodeURIComponent(
+      cart
+        .map(
+          (item) =>
+            `${item.title || item.name} x${item.amount || 1} - $${(
+              item.price * (item.amount || 1)
+            ).toFixed(2)}`
+        )
+        .join("\n") + `\n\nTotal: $${parseFloat(total).toFixed(2)}`
+    );
+    
+    window.open(`https://wa.me/+541140273385?text=${message}`, "_blank");
+  };
+  
   return (
     <>
       <div
@@ -52,17 +69,18 @@ export const Sidebar = () => {
           </div>
           <Link
             to={"/"}
+            onClick={console.log(cart, clearCart, total, itemAmount)}
             className="bg-gray-200 flex p-4 justify-center items-center text-primary w-full font-medium"
           >
             Ver Carrito
           </Link>
-
-          <Link
-            to={"/"}
+          <button
+            onClick={handleSendWhatsApp}
             className="bg-primary flex p-4 justify-center items-center text-white w-full font-medium"
           >
-            Verificar
-          </Link>
+            Enviar por WhatsApp
+          </button>
+          
         </div>
       </div>
     </>
